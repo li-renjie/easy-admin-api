@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'user',
     'mytest',
 ]
 
@@ -83,6 +84,7 @@ DATABASES = {
         'PASSWORD': 'admin.',
         'HOST': 'mysql-host',
         'PORT': '3306',
+        'OPTIONS': {'charset': 'utf8mb4'},
     }
 }
 
