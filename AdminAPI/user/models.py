@@ -9,7 +9,10 @@ class User(models.Model):
     email = models.CharField(max_length=255, verbose_name='邮箱')
     mobile = models.CharField(max_length=15, null=True, verbose_name='手机')
     status = models.SmallIntegerField(default=0, verbose_name='状态，0:正常，1:冻结')
-    role = models.ManyToManyField()
+    create_time = models.DateTimeField(auto_now=True)
+    update_time = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)
+    role = models.ManyToManyField(to='Role')
 
     class Meta:
         db_table = 'user'
@@ -21,6 +24,7 @@ class Role(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, verbose_name='ID')
     role_name = models.CharField(max_length=255, unique=True, verbose_name='角色名')
     description = models.CharField(max_length=255, verbose_name='角色名')
+    permission = models.ManyToManyField(to='Permission')
 
     class Meta:
         db_table = 'role'
