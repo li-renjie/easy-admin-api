@@ -25,6 +25,9 @@ class Role(models.Model):
     role_name = models.CharField(max_length=255, unique=True, verbose_name='角色名')
     description = models.CharField(max_length=255, verbose_name='角色名')
     permission = models.ManyToManyField(to='Permission')
+    create_time = models.DateTimeField(auto_now=True)
+    update_time = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'role'
@@ -34,6 +37,12 @@ class Role(models.Model):
 
 class Permission(models.Model):
     id = models.AutoField(auto_created=True, primary_key=True, verbose_name='ID')
+    name = models.CharField(max_length=255, unique=True, verbose_name='权限名')
+    action = models.CharField(max_length=255, verbose_name='动作')
+    description = models.CharField(max_length=255, null=True, verbose_name='权限描述')
+    create_time = models.DateTimeField(auto_now=True)
+    update_time = models.DateTimeField(auto_now_add=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         db_table = 'permission'
