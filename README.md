@@ -1,1 +1,1 @@
-# admin-api
+# easy-admin-api
